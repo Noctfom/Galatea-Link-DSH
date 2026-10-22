@@ -10,4 +10,5 @@
 - 诊断类工具（`health`、`readiness`、`test_server`）不需要会话绑定，连接失败属于可诊断结果而不是工具故障
 - 心跳上报的 `plugin_version` 必须来自 `package.json`，不要硬编码
 - 运行 `npm test`；`DSH_SOURCE_ROOT` 指向真实 dsh 源码构建产物，`DSH_PACKAGE_ROOT` 指向已安装的 `0.2.1` 发布包，两者都用于验证宿主兼容性
+- 用户反馈渠道、提交 issue/PR 的规范与隐私红线见 `CONTRIBUTING.md`
 - 不提交 `.env`、Token、API Key、模型或用户卡组

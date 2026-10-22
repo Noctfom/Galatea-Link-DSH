@@ -6,6 +6,8 @@
 - 需要 Link `3.2.0` 及以上，且声明的决策后端包含 `remote_dsh`
 - 纯 JavaScript，无构建步骤，`dsh plugin add` 不会触发构建授权
 
+交流群（QQ）**492420925** · 作者邮箱 **noctfom114514@outlook.com** · 想法和问题欢迎 [提 Issue](https://github.com/Noctfom/Galatea-Link-DSH/issues) 或 [发 PR](https://github.com/Noctfom/Galatea-Link-DSH/pulls)，见[参与指南](CONTRIBUTING.md)
+
 ## 一、最快路径：把下面这段发给 dsh
 
 > 请把 Galatea Link dsh 插件安装到我正在使用的 profile：
@@ -31,7 +33,15 @@
 
 ## 三、安装方式
 
-### 从 GitHub 安装（推荐，无需构建授权）
+### 从 npm 安装（最短路径）
+
+```bash
+dsh plugin --profile web add dsh-plugin-galatea-link
+```
+
+预构建发布，无构建步骤、无安装期脚本，也不会弹出 `allowBuilds` 授权
+
+### 从 GitHub 安装
 
 ```bash
 dsh plugin --profile web add github:Noctfom/Galatea-Link-DSH#<commit-sha>
@@ -39,10 +49,9 @@ dsh plugin --profile web add github:Noctfom/Galatea-Link-DSH#<commit-sha>
 
 本插件没有 `prepare` 构建脚本，pnpm ≥10 不会向你索取 `allowBuilds` 授权。建议锁定 commit，避免后续推送悄悄改变实际运行内容
 
-### 从 npm 或 tarball 安装
+### 从 tarball 安装
 
 ```bash
-dsh plugin --profile web add dsh-plugin-galatea-link
 dsh plugin --profile web add ./dsh-plugin-galatea-link-0.1.1.tgz
 ```
 
@@ -142,5 +151,27 @@ cd <插件目录> && DSH_PACKAGE_ROOT=<上面的绝对路径> npm test
 - 模型、GKG 与调用密钥在 Link WebUI 管理，插件只做只读诊断
 - 插件不能安装或启动 Link 本身，也不能改宿主进程的环境变量，首次连接的令牌注入与模型准备需要用户参与
 - `galatea_link_test_server` 的失败原因来自 Link：连接失败会被 Link 统一映射为 5xx，因此插件只能给出“不可达或端口未开放”的判断提示
+
+## 九、交流与贡献
+
+这个插件是从“让 dsh 真正坐在牌桌上”这个想法长出来的，很多细节来自实机跑出来的坑和别人的反馈
+
+- 交流群（QQ）：**492420925**
+- 作者邮箱：**noctfom114514@outlook.com**
+- [GitHub Issues](https://github.com/Noctfom/Galatea-Link-DSH/issues) / [Pull Request](https://github.com/Noctfom/Galatea-Link-DSH/pulls)
+
+**使用这个插件的 dsh 用户和开发者都欢迎提交 Issue 与 PR。** 不确定算不算 bug、不知道怎么实现、或者只是想说你在什么场景下用它，都建议直接开 issue 或进群说 —— 先对齐再动手，比默默写完被推翻省事得多
+
+特别希望收到的反馈：
+
+- 真实对局记录：哪一步开始偏离、当时时点预算、模型是否慢于预算、比赛是否正常结束
+- 不同模型在“只返回合法 `choice_id` 的限时任务”里的差异，哪些提示词约束是多余的
+- 卡组工作流：希望 dsh 在赛前怎么准备 YDK、怎么跟进限制卡表变化
+- 第一次安装时卡在哪一步、哪句话看不懂（这直接决定别人能不能用起来）
+- 从 AstrBot、其他 harness 或自建客户端接 Link 的经验，哪些设计值得借鉴
+
+如果你有想法、做出新工具或新决策策略，**欢迎反哺回这个项目**：提 PR、开 issue 讨论，或者进群把思路放出来让别人接着做。详细的提交规范、测试命令与隐私红线见 [CONTRIBUTING.md](CONTRIBUTING.md)
+
+提交问题时请附插件版本、dsh 版本、Link 版本（`galatea_link_health` 与 `galatea_link_readiness` 的输出最有用）和复现步骤；**不要贴** Link 令牌、模型 API Key、完整环境变量或别人的卡组与对局内容
 
 协议依据：[官方插件打包文档](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/develop/basic/publish.md)、[官方工具定义文档](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-tool.md)
