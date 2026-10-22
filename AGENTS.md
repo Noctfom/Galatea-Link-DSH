@@ -9,5 +9,5 @@
 - 令牌只能通过环境变量、`apiTokenFile` 或配置传入，读取必须是懒解析，不要在构造期缓存或在日志与错误里回显
 - 诊断类工具（`health`、`readiness`、`test_server`）不需要会话绑定，连接失败属于可诊断结果而不是工具故障
 - 心跳上报的 `plugin_version` 必须来自 `package.json`，不要硬编码
-- 运行 `npm test`；设置 `DSH_SOURCE_ROOT` 后可执行对真实 dsh 构建产物的兼容测试
+- 运行 `npm test`；`DSH_SOURCE_ROOT` 指向真实 dsh 源码构建产物，`DSH_PACKAGE_ROOT` 指向已安装的 `0.2.1` 发布包，两者都用于验证宿主兼容性
 - 不提交 `.env`、Token、API Key、模型或用户卡组

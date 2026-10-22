@@ -115,7 +115,7 @@ Link 本地卡组是公共目录，选中后复制为当前会话临时副本；
 
 ## 七、兼容与验证
 
-针对本地源码 `0.1.7-rc.1` 的 `subagents.start` 与官方 `0.2.1-rc.2` 的 `subagents.startActivation` 分别适配，新版本只用 `agent/created` 加 `tools.restrict`/`tools.guard` 限制子任务工具。dsh 仍处于快速变化阶段，后续不兼容 API 应只修改 `src/harness.js`
+针对本地源码 `0.1.7-rc.1` 的 `subagents.start` 与官方 `0.2.1-rc.2` 的 `subagents.startActivation` 分别适配，新版本只用 `agent/created` 加 `tools.restrict`/`tools.guard` 限制子任务工具。`0.2.1-rc.2` 已在官方发布包上实跑验证：14 个工具注册、捆绑技能注册、结构化动作返回、子任务工具白名单只剩 `structured_output`、父子上下文继承与摘要注入全部通过。dsh 仍处于快速变化阶段，后续不兼容 API 应只修改 `src/harness.js`
 
 宿主缺少受支持的 `subagents` 接口时，插件加载阶段会直接报错，不会静默失效
 
@@ -124,6 +124,17 @@ npm test
 ```
 
 真实宿主加载测试可设置 `DSH_SOURCE_ROOT=F:/DeepseekHarness/deepseek-harness` 后运行测试。该测试只读取宿主构建产物，不更改 profile 或调用收费模型
+
+官方发布包版本用 `DSH_PACKAGE_ROOT` 指定（一个已安装 `@deepseek-ai/dsh-*` `0.2.1-rc.2` 的目录），会真实跑一遍 `startActivation` 分支、子任务工具白名单与上下文继承：
+
+```bash
+mkdir dsh021 && cd dsh021 && npm init -y
+npm install @deepseek-ai/cordis@~4.0.5 @deepseek-ai/dsh-tools@0.2.1-rc.2 @deepseek-ai/dsh-system-prompt@0.2.1-rc.2 \
+  @deepseek-ai/dsh-subagent@0.2.1-rc.2 @deepseek-ai/dsh-subagent-fork-in-process@0.2.1-rc.2 \
+  @deepseek-ai/dsh-agent-loop@0.2.1-rc.2 @deepseek-ai/dsh-agent-loop-testkit@0.2.1-rc.2 \
+  @deepseek-ai/dsh-llm@0.2.1-rc.2 @deepseek-ai/dsh-skill@0.2.1-rc.2
+cd <插件目录> && DSH_PACKAGE_ROOT=<上面的绝对路径> npm test
+```
 
 ## 八、已知边界
 
