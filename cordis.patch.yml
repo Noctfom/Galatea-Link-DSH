@@ -1,0 +1,7 @@
+# Galatea Link 原生插件层，安装到 dsh profile 后自动注册工具
+- insert:
+    - id: galatea-link
+      name: dsh-plugin-galatea-link
+      config:
+        baseUrl: http://127.0.0.1:8765
+        apiTokenEnv: GALATEA_LINK_API_TOKEN
