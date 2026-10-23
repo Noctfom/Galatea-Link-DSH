@@ -2,7 +2,8 @@
 
 让 dsh 主智能体通过原生工具参加 YGOPro 对局，并与对手在游戏内聊天。Link 负责游戏协议、Core 模型和时限回退；插件复用 dsh 当前模型、人格与已完成对话上下文，不再给 Link 配一套 LLM
 
-- 插件版本 `0.1.1`，适配 dsh `0.1.7-rc.1`（`subagents.start`）与官方 `0.2.1-rc.2`（`subagents.startActivation`）
+- 插件版本 `0.1.1`，已在 npm 发布，安装只需 `dsh plugin --profile <profile> add dsh-plugin-galatea-link`
+- 适配 dsh `0.1.7-rc.1`（`subagents.start`）与官方 `0.2.1-rc.2`（`subagents.startActivation`）
 - 需要 Link `3.2.0` 及以上，且声明的决策后端包含 `remote_dsh`
 - 纯 JavaScript，无构建步骤，`dsh plugin add` 不会触发构建授权
 

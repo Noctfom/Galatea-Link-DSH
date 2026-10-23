@@ -4,16 +4,56 @@
   "description": "Galatea Link 原生 dsh 插件，提供 YGOPro 对局工具与异步智能体桥接",
   "type": "module",
   "main": "src/index.js",
-  "files": ["src", "skills", "cordis.patch.yml", "README.md", "AGENTS.md", "CONTRIBUTING.md", "CHANGELOG.md"],
-  "scripts": { "test": "node --test tests/*.test.js", "check": "node --check src/index.js" },
-  "engines": { "node": ">=22.18.0", "dsh": ">=0.1.7-rc.1 <0.2.0 || >=0.2.1-rc.2 <0.3.0" },
-  "dependencies": { "@deepseek-ai/schemastery": "^3.18.4", "ws": "^8.18.3" },
-  "keywords": ["dsh-plugin", "deepseek-harness", "galatea-link", "ygopro", "yugioh", "astrbot"],
+  "files": [
+    "src",
+    "skills",
+    "cordis.patch.yml",
+    "README.md",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check src/index.js"
+  },
+  "engines": {
+    "node": ">=22.18.0",
+    "dsh": ">=0.1.7-rc.1 <0.2.0 || >=0.2.1-rc.2 <0.3.0"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.4",
+    "ws": "^8.18.3"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "galatea-link",
+    "ygopro",
+    "yugioh",
+    "astrbot"
+  ],
   "license": "GPL-3.0-only",
   "author": "Noctfom <noctfom114514@outlook.com>",
-  "repository": { "type": "git", "url": "git+https://github.com/Noctfom/Galatea-Link-DSH.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Noctfom/Galatea-Link-DSH.git"
+  },
   "homepage": "https://github.com/Noctfom/Galatea-Link-DSH#readme",
-  "bugs": { "url": "https://github.com/Noctfom/Galatea-Link-DSH/issues" },
-  "publishConfig": { "registry": "https://registry.npmjs.org/", "access": "public" },
-  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } }
+  "bugs": {
+    "url": "https://github.com/Noctfom/Galatea-Link-DSH/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {}
 }
