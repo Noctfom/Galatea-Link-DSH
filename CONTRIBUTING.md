@@ -49,3 +49,31 @@ $env:DSH_PACKAGE_ROOT="<安装目录>"; npm test
 ## 如果想反哺更多
 
 这个项目依赖两件事：真实对局数据，和愿意在别人踩坑前先把坑填上的人。如果你做出了新工具、新决策策略、新卡组流程，或者只是把安装文档写得更清楚，都欢迎提回来。也可以直接进群聊，把想法放出来让别人接着做
+
+## 维护者发布流程
+
+发布前确认改的是 `package.json` 的 `version`，并把变动写进 [CHANGELOG.md](CHANGELOG.md)。插件没有构建步骤，`files` 里的内容就是发布物
+
+```bash
+npm test                                   # 至少跑单测
+npm pack --dry-run                         # 核对将要发布的内容
+npm login                                  # 需要已注册的 npm 账号
+npm publish                                # publishConfig 已固定 registry 与 access: public
+npm view dsh-plugin-galatea-link version   # 确认远端版本
+npm pack                                   # 需要 tarball 时用它，产物可直接 dsh plugin add
+```
+
+发布后打 tag，方便用户锁定 commit：
+
+```bash
+git tag v0.1.1 && git push origin v0.1.1
+```
+
+### 如果 npm 暂时不可用
+
+npm 站点或发布通道受限时不必卡住，以下两种方式都能让用户装上，且不需要构建授权：
+
+- **GitHub 直装**：`dsh plugin --profile web add github:Noctfom/Galatea-Link-DSH#<commit-sha>`
+- **自带 tarball**：`npm pack` 生成 `dsh-plugin-galatea-link-<version>.tgz`，附加到 GitHub Release，用户执行 `dsh plugin --profile web add ./dsh-plugin-galatea-link-<version>.tgz`
+
+注意 tarball 与 GitHub 直装都按 `package.json` 的版本号区分，务必先改版本再打包，并在 README 与 CHANGELOG 里同步

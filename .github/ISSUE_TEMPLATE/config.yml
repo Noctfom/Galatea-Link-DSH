@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 参与指南与提交规范
+    url: https://github.com/Noctfom/Galatea-Link-DSH/blob/main/CONTRIBUTING.md
+    about: 提交 issue/PR 的约定、测试命令与隐私红线
+  - name: 邮件联系作者
+    url: mailto:noctfom114514@outlook.com
+    about: 不方便公开讨论的问题可以直接发邮件
+  - name: Galatea Link 服务端问题
+    url: https://github.com/Noctfom/Galatea-Link/issues
+    about: 模型、GKG、卡数据库、游戏协议相关的问题属于 Link 主模块

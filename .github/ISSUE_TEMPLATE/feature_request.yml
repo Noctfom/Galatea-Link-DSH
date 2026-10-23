@@ -1,0 +1,52 @@
+name: 想法与需求
+description: 新工具、新决策策略、卡组工作流，或想反哺项目的方案
+title: "[Idea] "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        先聊想法再动手通常最省事。交流群（QQ）492420925，也可以发邮件到 noctfom114514@outlook.com
+
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 你遇到的场景
+      description: 是什么对局、什么样的卡组或流程让你觉得现在不顺手
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 希望它怎么工作
+      description: 描述期望的交互或工具名即可，不必先写代码
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 你考虑过的替代方案
+      description: 现在你是怎么绕过去的
+    validations:
+      required: false
+
+  - type: dropdown
+    id: contribute
+    attributes:
+      label: 是否愿意自己提 PR
+      options:
+        - 愿意，可以自己实现
+        - 愿意，但需要有人指路
+        - 只提需求，实现交给维护者
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: 影响范围确认
+      options:
+        - label: 这个想法只需要改本插件，不需要改 Link 主模块
+        - label: 这个想法可能需要 Link 侧配合，我知道要先讨论

@@ -152,7 +152,33 @@ cd <插件目录> && DSH_PACKAGE_ROOT=<上面的绝对路径> npm test
 - 插件不能安装或启动 Link 本身，也不能改宿主进程的环境变量，首次连接的令牌注入与模型准备需要用户参与
 - `galatea_link_test_server` 的失败原因来自 Link：连接失败会被 Link 统一映射为 5xx，因此插件只能给出“不可达或端口未开放”的判断提示
 
-## 九、交流与贡献
+## 九、常见问题
+
+**`galatea_link_status` 显示 WebSocket 未连接**
+先看 `last_error`。地址写错、令牌不一致、Link 未启动都会到这里；用 `galatea_link_health` 区分是“Link 不在”还是“令牌不对”。跨 Docker 容器时确认同网络服务名或 `host.docker.internal`，不要写容器 IP
+
+**Link 已在跑，但插件工具里没有 `galatea_link_*`**
+插件没进当前 profile，或进的是别的 profile。检查 `dsh plugin --profile <你的profile> --dump-config` 里有没有 `# == dsh-plugin-galatea-link` 这一层，改完配置要重启 profile
+
+**改了设置或令牌，为什么没生效**
+`baseUrl`、`apiTokenEnv`、`allowAgentDeckEdit` 等配置是加载期读取，需要重启 profile。只有 `apiTokenFile` 指向的令牌内容会在每次请求重新读取，可以热更新
+
+**`galatea_link_readiness` 说没模型或资产缺失**
+Link 启动本身不加载模型。需要先在 Link WebUI 导入并选中模型、补齐 V3 运行资产、同步卡数据库。`warnings` 里会逐条说明缺什么
+
+**`galatea_link_test_server` 返回 500「服务内部错误」**
+这是 Link 把 TCP 连接失败统一映射成了 5xx，通常就是目标服务器没开或端口不通。插件会附 `hint`，按提示换地址或先起服务器，不要反复重试同一地址
+
+**换了一个会话，为什么不能开局**
+同一 Link 进程只支持一局，对局绑定在发起它的 dsh 会话上。正常打完会自动释放；如果上一局是异常中断且原会话还开着，让原会话调用 `galatea_link_stop_duel` 释放即可
+
+**模型太慢，动作是不是白算了**
+动作预算来自 Link 的 `decision.llm_time_budget`，超时会由 Link 回退到 Core 路径。插件在提交前会再次核对 `session_id`、`request_id`、`observation_id`，过期决策不会被重放
+
+**会不会把隐藏卡泄露给模型**
+不会。插件只把玩家可见观察与 `legal_actions` 交给 dsh，不提供对手手牌或卡组信息
+
+## 十、交流与贡献
 
 这个插件是从“让 dsh 真正坐在牌桌上”这个想法长出来的，很多细节来自实机跑出来的坑和别人的反馈
 

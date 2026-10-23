@@ -4,7 +4,7 @@
   "description": "Galatea Link 原生 dsh 插件，提供 YGOPro 对局工具与异步智能体桥接",
   "type": "module",
   "main": "src/index.js",
-  "files": ["src", "skills", "cordis.patch.yml", "README.md", "AGENTS.md", "CONTRIBUTING.md"],
+  "files": ["src", "skills", "cordis.patch.yml", "README.md", "AGENTS.md", "CONTRIBUTING.md", "CHANGELOG.md"],
   "scripts": { "test": "node --test tests/*.test.js", "check": "node --check src/index.js" },
   "engines": { "node": ">=22.19.0", "dsh": ">=0.1.7-rc.1 <0.2.0 || >=0.2.1-rc.2 <0.3.0" },
   "dependencies": { "@deepseek-ai/schemastery": "^3.18.4", "ws": "^8.18.3" },

@@ -1,0 +1,69 @@
+name: 问题反馈
+description: 安装失败、连接不上、对局异常、决策不生效等
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请**不要**贴 Link 令牌、模型 API Key、完整环境变量，或他人的卡组与对局内容；日志里出现请先打码
+
+        交流群（QQ）492420925，也可以直接发邮件到 noctfom114514@outlook.com
+
+  - type: input
+    id: versions
+    attributes:
+      label: 版本信息
+      description: 插件、dsh、Link 各自的版本
+      placeholder: 插件 0.1.1 / dsh 0.2.1-rc.2 / Link 3.2.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: 诊断输出
+      description: 贴 `galatea_link_health` 与 `galatea_link_readiness` 的结果最有用
+      render: json
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 从哪一步开始出问题，是否每次都能复现
+      placeholder: |
+        1. 调用 galatea_link_readiness
+        2. 调用 galatea_link_configure_session 选择卡组
+        3. …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果与实际结果
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志、报错或截图
+      description: 插件侧报错、Link 控制台输出、游戏内现象都算
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: 安装方式
+      options:
+        - npm
+        - GitHub 直装
+        - tarball
+        - 本机目录 link
+    validations:
+      required: true
