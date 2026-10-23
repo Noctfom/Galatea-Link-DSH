@@ -54,6 +54,5 @@
   },
   "directories": {
     "test": "tests"
-  },
-  "devDependencies": {}
+  }
 }
