@@ -7,6 +7,8 @@
 - 需要 Link `3.2.0` 及以上，且声明的决策后端包含 `remote_dsh`
 - 纯 JavaScript，无构建步骤，`dsh plugin add` 不会触发构建授权
 
+>入乡随俗了，除了这句，文档都是大肥鱼写的()，对接的是我的Link主项目，复用了astr插件的逻辑简单重写+dsh翻新的，可能不会及时维护，有任何问题可以按下述方式向我反馈或直接修改（
+
 交流群（QQ）**492420925** · 作者邮箱 **noctfom114514@outlook.com** · 想法和问题欢迎 [提 Issue](https://github.com/Noctfom/Galatea-Link-DSH/issues) 或 [发 PR](https://github.com/Noctfom/Galatea-Link-DSH/pulls)，见[参与指南](CONTRIBUTING.md)
 
 ## 一、最快路径：把下面这段发给 dsh
